@@ -1,5 +1,5 @@
 """
-package python module by running command: python3 setup.py build_ext
+package python module by running command: python3 setup.py build_ext --inplace
 for difference application, such as for c or for python, you should write in difference way
 reference: https://www.cnblogs.com/freeweb/p/6548208.html
 """
@@ -10,6 +10,7 @@ from Cython.Build import cythonize
 print("package python module to .so file")
 
 setup(
-    ext_modules=cythonize("pymodule.py")
+    ext_modules=cythonize("pymodule.pyx")
+    # ext_modules=cythonize("example_cy.pyx")
 )
 print("done")

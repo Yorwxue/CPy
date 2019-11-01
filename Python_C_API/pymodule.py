@@ -1,10 +1,6 @@
-# import sys
-# sys.path.append("/home/clliao/CppProjects/CPy/venv/lib/python3.6/site-packages")
-
-# import numpy as np
 
 
-# an easy example
+# an example
 # """
 class pycompute(object):
     def add(self, a, b):
@@ -18,6 +14,5 @@ class pycompute(object):
         print("b = %.2f" % b)
         # c = self.add(a, b)
         c = self.subtraction(a, b)
-        # c = np.random.randint(0, 10)
         return c
 # """

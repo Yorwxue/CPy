@@ -1,11 +1,15 @@
 /************************
-* 1. compile by execute the following command:  "gcc -g -Wall main.c -lpython3.6m -o py_c.out"
-* 2. run py2c.out
+* 1. compile by execute the following command:  "gcc $(python3-config --includes) main.c $(python3-config --libs) -o py_c.out"
+* 2. run the command: ./py_c.out
 reference: https://learning-python.com/class/Workbook/unit16.htm
 ************************/
 
+#include <Python.h>
 #include <stdio.h>
-#include <python3.6/Python.h>
+#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
+#include <numpy/arrayobject.h>
+//#include <opencv2/core/core.hpp>
+
 
 /* Execute func(x,y) in the Python interpreter.  The
    arguments and return result of the function must
@@ -71,7 +75,7 @@ PyObject *import_name(const char *modname, const char *symbol) {
 
 /* Simple embedding example */
 int main() {
-    printf("import python module in c program.\n");
+    printf("Call a python module from c program.\n");
     double x = 0.2;
     double y = 0.3;
 
@@ -85,11 +89,11 @@ int main() {
 //    PyObject* np = PyImport_ImportModule("numpy");
 
     /* Get the reference to the python function */
-    PyObject *pclass = import_name("pymodule","pycompute");
+    PyObject *pyclass = import_name("pymodule","pycompute");
 
     /* Declare python object*/
     PyObject *pargs  = Py_BuildValue("()");
-    PyObject *py_obj = PyEval_CallObject(pclass, pargs);
+    PyObject *py_obj = PyEval_CallObject(pyclass, pargs);
 
     /* Call it using call_func() code */
     PyObject *py_func = PyObject_GetAttrString(py_obj, "compute");
@@ -97,7 +101,7 @@ int main() {
     
     /* Done */
 //    Py_DECREF(sys_path);
-    Py_DECREF(pclass);
+    Py_DECREF(pyclass);
     Py_DECREF(pargs);
     Py_DECREF(py_obj);
     Py_DECREF(py_func);

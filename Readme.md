@@ -1,17 +1,17 @@
-Switch between python and c
+Method of Extension Library Between C and Python
 ===
 
-# C to Python
-## By ctypes
-``` python
+## Call a C Function From Python
+### By ctypes
+```python
 from ctypes import cdll, c_int, c_float
 clib = cdll.LoadLibrary("PATH/TO/YOUR/CLIB.so")
 clib.func(c_int(5), c_float(0.3))
 ```
 
-# Pthon to C
-## By Python/C API
-`````` c
+## Call a Python Function From C
+### By Python/C API
+```c
 #include <stdio.h>
 #include <python3.6/Python.h>
 
@@ -46,6 +46,8 @@ return retval;
 
 
 ### reference: 
-> [1] https://medium.com/pyladies-taiwan/%E5%A6%82py%E4%BC%BCc-python-%E8%88%87-c-%E7%9A%84%E5%85%B1%E7%94%9F%E6%B3%95%E5%89%87-568add0ba5b8
-> [2] https://www.cnblogs.com/freeweb/p/6548208.html
-> [3] reference: https://learning-python.com/class/Workbook/unit16.htm
+> [1] Extension between C and Python: https://medium.com/pyladies-taiwan/%E5%A6%82py%E4%BC%BCc-python-%E8%88%87-c-%E7%9A%84%E5%85%B1%E7%94%9F%E6%B3%95%E5%89%87-568add0ba5b8
+> [2] Cython: https://www.cnblogs.com/freeweb/p/6548208.html
+> [3] Python-C API: https://learning-python.com/class/Workbook/unit16.htm
+> [4] C Extension: http://shouce.jb51.net/Python_jj/c_extensions/python_c_api.html
+> [5] C Extension: https://segmentfault.com/a/1190000000479951#articleHeader1
