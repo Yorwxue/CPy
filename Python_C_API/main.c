@@ -7,7 +7,7 @@ reference: https://learning-python.com/class/Workbook/unit16.htm
 #include <Python.h>
 #include <stdio.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
-#include <numpy/arrayobject.h>
+//#include <numpy/arrayobject.h>
 //#include <opencv2/core/core.hpp>
 
 
