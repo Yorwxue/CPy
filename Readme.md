@@ -51,3 +51,9 @@ return retval;
 > [3] Python-C API: https://learning-python.com/class/Workbook/unit16.htm
 > [4] C Extension: http://shouce.jb51.net/Python_jj/c_extensions/python_c_api.html
 > [5] C Extension: https://segmentfault.com/a/1190000000479951#articleHeader1
+> [6] Numpy for C (Python side): https://stackoverflow.com/questions/28474931/return-numpy-array-in-cython-defined-c-function
+> [7] Numpy for C (C side): https://stackoverflow.com/questions/28483819/how-can-i-use-the-numpy-c-api-in-both-c-header-and-source-file
+> [8] C function with Numpy object: https://github.com/macklin/C_arraytest
+> [9] Numpy type in C(C side): https://docs.scipy.org/doc/numpy/reference/c-api.dtype.html
+> [10] Numpy type in C(Python side): https://numpy.org/devdocs/user/basics.types.html
+> [11] PyArrayObject: https://blog.csdn.net/zj360202/article/details/79214363

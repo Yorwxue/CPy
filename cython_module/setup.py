@@ -10,7 +10,6 @@ from Cython.Build import cythonize
 print("package python module to .so file")
 
 setup(
-    ext_modules=cythonize("example_cy.pyx")
-    # ext_modules=cythonize("pymodule.pyx")
+    ext_modules=cythonize("pymodule.pyx")
 )
 print("done")
