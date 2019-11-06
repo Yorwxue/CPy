@@ -10,7 +10,7 @@ reference:
 #include <Python.h>
 
 /* PATH TO YOUR numpy/core/include/numpy*/
-#include "lib/numpy/arrayobject.h"
+#include "numpy/arrayobject.h"
 
 #include "pymodule.h"
 
