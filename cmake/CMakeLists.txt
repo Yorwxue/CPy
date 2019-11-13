@@ -6,7 +6,7 @@ PROJECT(CPy)
 # head file path
 INCLUDE_DIRECTORIES(
 include
-include/python3.6  # Copy the directory of headers into ./include
+include/python3.6m  # Copy the directory of headers into ./include
 include/numpy
 )
 
@@ -21,7 +21,7 @@ ${DIR_SRCS}
 # set extern libraries
 SET(LIBRARIES
 pymodule.so  # Your shared object file
-python3.6
+python3.6m
 )
 
 LINK_DIRECTORIES(

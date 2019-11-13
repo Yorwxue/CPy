@@ -7,7 +7,7 @@ reference:
 [2] https://blog.csdn.net/zj360202/article/details/79214363
 ************************/
 
-#include <Python.h>
+#include "Python.h"
 
 /* PATH TO YOUR numpy/core/include/numpy*/
 #include "numpy/arrayobject.h"

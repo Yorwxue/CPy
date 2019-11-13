@@ -4,6 +4,7 @@ venv/
 .vscode/
 build/*
 *numpy/
+*python3.6m/
 
 *.o
 *.so
@@ -13,3 +14,5 @@ build/*
 *pymodule.h
 *pymodule.c
 *pymodule.cp*
+
+cmake/build/
