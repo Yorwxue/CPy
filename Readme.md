@@ -43,14 +43,38 @@ return retval;
 ```
 
 ## By Cython
+### Function
++ Cython just like C, if you declare a variable as specific type, you can't git it other type data, for example: 
+```cython
+cdef np.ndarray[double, ndim=1] x
+# Wrong Example 1
+x = "1"
+
+# Wrong Example 2
+x = np.asaray(x, dtype=np.int)
+
+# Correct method:
+cdef np.ndarray[np.int_t, ndim=1] y = np.asaray(x, dtype=np.int)
+```
 + Using cdef for c/c++, cpdef for c/c++ and ptrhon, such as:
 ```cython 
 cdef public np.ndarray[double, ndim=1] compute(char* path):
-    cdef public int attr 
-    def __cinit__:
-        self.attr = 0
-        // your algorithm go here ..
+    print("path: ", path)
+    // your algorithm go here ..
+    return np.zeros(1)
 ```
+### Class
+```cython
+cdef public class Foo[object c_Foo, type c_Foo]:
+    cdef public int attr 
+    def __cinit__(self):
+        self.attr = 0
+    cdef int add(self, x):
+        return x + self.attr
+```
++ [object c_Foo, type c_Foo_t] ensures that c_Foo is available to C/C++ as struct c_Foo, and the Python TypeObject defining Foo is available as c_Foo_t.
++ If you don't need Foo class, you can replace ```cdef public class Foo[object c_Foo, type c_Foo]:``` with ```cdef class Foo:```.
+#### attributes
 + It's necessary to declare types of return object amd initial attributes.
 ```cython
 from libcpp.string cimport string
@@ -66,6 +90,18 @@ from libcpp cimport bool
 # cdef YOUR_CUSTOMER_OBJECT 
 ```
 + Note that if you using your own type, you're suppose to declare object with right type.
+
+#### methods
++ if you want to call methods, you have to wrap method as function.
+```cython
+cdef public Foo get_method():
+     return Foo()
+
+cdef public int method_add(FOO foo, int x):
+    cdef int ret = foo.add(x)
+    return ret
+```
+
 
 # cmake
 + Copy source files(.c) into ./cmake/src
@@ -89,10 +125,12 @@ $ cmake ../ > /dev/null; make
 > [4] C Extension: http://shouce.jb51.net/Python_jj/c_extensions/python_c_api.html
 > [5] C Extension: https://segmentfault.com/a/1190000000479951#articleHeader1
 > [6] Numpy for C (Python side): https://stackoverflow.com/questions/28474931/return-numpy-array-in-cython-defined-c-function
-> [7] Numpy for C (C side): https://stackoverflow.com/questions/28483819/how-can-i-use-the-numpy-c-api-in-both-c-header-and-source-file
-> [8] C function with Numpy object: https://github.com/macklin/C_arraytest
-> [9] Numpy type in C(C side): https://docs.scipy.org/doc/numpy/reference/c-api.dtype.html
-> [10] Numpy type in C(Python side): https://numpy.org/devdocs/user/basics.types.html
-> [11] PyArrayObject: https://blog.csdn.net/zj360202/article/details/79214363
-> [12] PyClass for Cython: https://www.reddit.com/r/Cython/comments/8mqlca/convert_python_class_to_cython/
-> [13] Using Python Object in C++: https://www.tutorialspoint.com/How-to-use-Python-object-in-Cplusplus
+> [7] Numpy type for C (Python side): https://cython-docs2.readthedocs.io/en/latest/src/tutorial/numpy.html
+> [8] Numpy for C (C side): https://stackoverflow.com/questions/28483819/how-can-i-use-the-numpy-c-api-in-both-c-header-and-source-file
+> [9] C function with Numpy object: https://github.com/macklin/C_arraytest
+> [10] Numpy type in C(C side): https://docs.scipy.org/doc/numpy/reference/c-api.dtype.html
+> [11] Numpy type in C(Python side): https://numpy.org/devdocs/user/basics.types.html
+> [12] PyArrayObject: https://blog.csdn.net/zj360202/article/details/79214363
+> [13] PyClass for Cython: https://www.reddit.com/r/Cython/comments/8mqlca/convert_python_class_to_cython/
+> [14] Using Python Object in C++: https://www.tutorialspoint.com/How-to-use-Python-object-in-Cplusplus
+> [15] Declare a public class: https://stackoverflow.com/questions/40572073/how-to-create-a-public-cython-function-that-can-receive-c-struct-instance-or-p

@@ -13,6 +13,10 @@ print("package python module to .so file")
 
 setup(
     include_dirs=".",  # Path to your lib, such as numpy[2].
-    ext_modules=cythonize("pymodule.pyx")
+    ext_modules=cythonize(
+        "pymodule.pyx",
+        language="c++",
+        compiler_directives={'language_level': 3}
+    )
 )
 print("done")
